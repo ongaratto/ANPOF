@@ -1,7 +1,6 @@
 \documentclass[aspectratio=169,11pt]{beamer}
 % ANPOF 2026-inspired Beamer theme (unofficial)
-% To use official institutional logos, put the files
-% unicamp_logo.png and fapesp_logo.png next to main.tex.
+% Institutional logo images: unicamp_logo.png and fapesp_logo.jpg.
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -27,35 +26,13 @@
 \setbeamerfont{frametitle}{size=\Large,series=\bfseries}
 \newcommand{\shortevent}{XXI ENCONTRO NACIONAL DA ANPOF}
 
-% Vector fallback sketches, not substitutes for official identity assets.
-\newcommand{\UnicampMark}{%
- \begin{tikzpicture}[x=1cm,y=1cm,baseline=(name.base)]
-  \begin{scope}[shift={(0.66,0.39)}]
-   \foreach \a in {15,38,61,84,107,130,153,176,199,222,245,268,291}{
-    \fill[black] (\a:0.22) -- (\a-7:0.83) -- (\a+7:0.83) -- cycle;
-   }
-   \fill[red!85!black] (72:0.90) circle (0.072);
-   \fill[red!85!black] (0:0.90) circle (0.072);
-   \fill[red!85!black] (287:0.90) circle (0.072);
-  \end{scope}
-  \node[font=\sffamily\bfseries\fontsize{11}{11}\selectfont,anchor=base] (name) at (0.67,-0.63) {UNICAMP};
- \end{tikzpicture}%
-}
-\newcommand{\FapespMark}{%
- \begin{tikzpicture}[baseline=(name.base)]
-  \fill[ANPOFnavy] (0,0.17) .. controls (0.25,0.62) and (0.66,0.65) .. (0.94,0.38)
-  -- (1.34,0.38) -- (1.14,0.03) -- (0.86,0.03)
-  .. controls (0.54,0.34) and (0.31,0.18) .. (0,0.17);
-  \node[font=\sffamily\bfseries\fontsize{20}{20}\selectfont,text=ANPOFnavy,anchor=base west] (name) at (1.44,0.08) {FAPESP};
-  \node[font=\sffamily\fontsize{5.5}{6.5}\selectfont,text=ANPOFnavy,anchor=north west] at (1.45,0) {S\~AO PAULO RESEARCH FOUNDATION};
- \end{tikzpicture}%
-}
+% Institutional logos are included as image files (no TikZ logo sketches).
 \newcommand{\InstitutionalLogos}{%
  \begin{minipage}[c]{0.27\linewidth}\centering
- \IfFileExists{unicamp_logo.png}{\includegraphics[height=1.13cm,keepaspectratio]{unicamp_logo.png}}{\resizebox{!}{1.13cm}{\UnicampMark}}\end{minipage}%
+ \includegraphics[height=1.13cm,keepaspectratio]{unicamp_logo.png}\end{minipage}%
  \hfill
- \begin{minipage}[c]{0.43\linewidth}\centering
- \IfFileExists{fapesp_logo.png}{\includegraphics[height=0.65cm,keepaspectratio]{fapesp_logo.png}}{\resizebox{!}{0.64cm}{\FapespMark}}\end{minipage}%
+ \begin{minipage}[c]{0.57\linewidth}\centering
+ \includegraphics[width=\linewidth,height=0.92cm,keepaspectratio]{fapesp_logo.jpg}\end{minipage}%
 }
 
 % Backgrounds based on the event's dark blue + orange 2026 palette.
