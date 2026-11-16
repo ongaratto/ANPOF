@@ -1,0 +1,181 @@
+
+\documentclass[paper=a4, fontsize=11pt]{scrartcl} % A4 paper and 11pt font size
+
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\usepackage{fourier} % Use the Adobe Utopia font for the document - comment this line to return to the LaTeX default
+\usepackage[english]{babel} % English language/hyphenation
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage{sectsty} % Allows customizing section commands
+\allsectionsfont{\centering \normalfont\scshape} % Make all sections centered, the default font and small caps
+\usepackage{bm}
+\usepackage{fancyhdr} % Custom headers and footers
+\pagestyle{fancyplain} % Makes all pages in the document conform to the custom headers and footers
+\fancyhead{} % No page header - if you want one, create it in the same way as the footers below
+\fancyfoot[L]{} % Empty left footer
+\fancyfoot[C]{} % Empty center footer
+\fancyfoot[R]{\thepage} % Page numbering for right footer
+\renewcommand{\headrulewidth}{0pt} % Remove header underlines
+\renewcommand{\footrulewidth}{0pt} % Remove footer underlines
+\setlength{\headheight}{13.6pt} % Customize the height of the header
+
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs - comment this line for an assignment with lots of text
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} % Create horizontal rule command with 1 argument of height
+
+\title{	
+\normalfont \normalsize 
+\textsc{IRIT, Toulouse, France} \\ [25pt] % Your university, school and/or department name(s)
+\horrule{0.5pt} \\[0.4cm] % Thin top horizontal rule
+\huge Multimodalities, Many-valuedness and Dynamics
+\\ % The assignment title
+\horrule{2pt} \\[0.5cm] % Thick bottom horizontal rule
+}
+
+ % Your name
+
+\date{\normalsize\today} % Today's date or a custom date
+
+\begin{document}
+
+\maketitle % Print the title
+
+\section{An abstract characterization of many-valued dynamic epistemic logics}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+Is it possible to extend modal many-valued logics with dynamics operators in an uniform way? What are the requisites such logic should obey? Let us begin by characterizing a many-valued logic abstractly.
+
+
+\begin{definition}
+    $C$ is a set of unary connectives, $P = \{p, q, r, ...\}$ is a countable set of propositional variables $\mathcal{L}$ is a language defined by the following BNF form:
+    \[\varphi :=\ p\ |\ \varphi \land \varphi\ |\ \{*\varphi\}_{* \in C}
+    \]
+\end{definition}
+
+    $\Sigma$ is the signature of $\mathcal{L}$. 
+    
+    \begin{definition} A logic $\textbf{L}$ defined over $\mathcal{L}$ is defined by the consequence relation $\vDash_{\textbf{L}}$ in the following way. Let $\mathcal{M}_{\textbf{L}} = \langle\mathrm{A}, \mathrm{D}, \{f_c\}_{c \in \Sigma}\rangle$ be a matrix for \textbf{L}, such that A $\neq \emptyset$ is the set of truth-values of $\textbf{L}$, D $\subset$ A is the set of \textit{designated} truth-values of $\textbf{L}$, and $f_c:A^n\mapsto A$, for a given $n$-ary connective $c$ whose truth-function is denoted by $f_c$. An $L$-valuation is $v: \mathcal{L} \mapsto \mathrm{A}$ such that 
+
+    \[
+    v(c(\varphi_1, ..., \varphi_n)) = f_c(v(\varphi_1), v(\varphi_2), ..., v(\varphi_n))
+    \]
+
+    Then, for all $\Gamma, \varphi \subseteq \mathcal{L},$
+    \[\Gamma \vDash_{\textbf{L}} \varphi \text{ iff } \text{for all valuations } v \text{ such that } v[\Gamma] \subseteq \mathrm{D}, \text{ then } v(\varphi) \in \mathrm{D}\]
+\end{definition}
+
+ $A$ is a countable set of multimodal parameters $\{i, j, k, ...\}$. $\mathcal{L}_\Box$ is the language $\mathcal{L}$ extended with multimodals operators $\{\Box_i\}_{i \in A}$. 
+
+
+\begin{definition}
+    \textbf{L}$_{\Box}$ is the multimodal extension of \textbf{L}. \textbf{L}$_{\Box}$ is defined by the consequence relation $\vDash_{\textbf{L}_\Box}$ in the following way. Let $K = \langle W, \{R_i\}_{i \in A}, v\rangle$ be a Kripke structure such that $W \neq \emptyset$ is a set of worlds, $R_i \subseteq W \times W$ is an accessibility relation between worlds, and $v = \{v_w:w \in W\}$ is a set of valuations for each world $w$. The valuation $v_w$, for each world $w \in W$, extends an $L$-valuation in the following way: 
+
+    \[v_w(\Box_i\varphi) = inf\{v_{w'}(\varphi): wR_iw'\}\]
+\end{definition}
+
+Let us assume that \textbf{L}$_\Box$ also defines a syntactic consequence relation $\vdash_{L_\Box}$ which is sound and complete w.r.t. $\vDash_{L_\Box}$. Furthermore, the dual of $\Box_i$, $\Diamond_i$, is also definable in \textbf{L}$_\Box$, and a congruence relation $\equiv$. 
+
+The connectives $\rightarrow, \equiv$ are assumed to be definable from $\land, *$, $* \in C$. Here, we will assume that conjunction and implication are $n$-valued generalizations of the classical connectives in the following sense: for all valuations $v_w$,
+\[
+\begin{array}{lll}
+   v_w(\varphi \land \psi) \in \mathrm{D}  &  iff &v_w(\varphi) \in \mathrm{D} \text{ and } v_w(\psi) \in \mathrm{D}\\
+    v_w(\varphi \rightarrow \psi) \in \mathrm{D} &  iff &  v_w(\varphi) \notin \mathrm{D} \text{ or } v_w(\psi) \in \mathrm{D}
+\end{array}\]
+
+Let us designate one element $1 \in \mathrm{D}$. One important restriction for the conditional and the conjunction are the following ones:
+\[
+\begin{array}{ll}
+    (i) & v_w(\varphi) \notin \mathrm{D} \Rightarrow v_w(\varphi \rightarrow \psi) = 1 \\
+    (ii) & v_w(\varphi) \in \mathrm{D} \Rightarrow v_w(\varphi \rightarrow \psi) = v_w(\psi)\\
+    (iii) & v_w(\varphi \land \psi) = \min\{v_w(\varphi), v_w(\psi)\}
+\end{array}
+\]
+Finally, the class of frames of $L_\Box$ is closed under submodel restriction. 
+
+The language $\mathcal{L}_{[]}$ is defined over $\mathcal{L}_\Box$ extended with dynamic operators $[\varphi]\varphi$. \textbf{L}$_{[]}$ is the extension of \textbf{L}$_\Box$ with the following axioms and rules:
+\[
+\begin{array}{ll}
+    PA1 & [\varphi]p \equiv \varphi \rightarrow p \\
+    PA2 &  [\varphi]*\psi \equiv \varphi \rightarrow *[\varphi]\psi, \text{ for }* \in C \cup \{K_i\}_{i \in A}\\
+    PA3 & [\varphi](\psi \land \lambda) \equiv [\varphi]\psi \land [\varphi]\lambda
+    \\ RE & \theta \equiv \gamma\ /\ \varphi \equiv \varphi(\theta/\gamma)  
+\end{array}
+\]
+
+The semantics for \textbf{L}$_{[]}$ is defined in the following way:
+\begin{definition}\label{semantic}
+    An $L_{[]}$-valuation extends an $L_\Box$-valuation with the following condition:
+   \[
+v_w([\varphi]\psi) =
+\begin{cases}
+1& \text{if } v_w(\varphi) \notin \mathrm{D} \\
+v_w^\varphi(\psi) & \text{if } v_w(\varphi) \in \mathrm{D}
+\end{cases}
+\]
+The model restriction $M^\varphi = \langle W^\alpha, \{R_i^\alpha\}_{i \in A}, v^\alpha\rangle$ is defined as
+\[\begin{array}{lll}
+    W^\varphi& = & \{w: v_w(\varphi) \in \mathrm{D} \text{ and } w \in  W\}\\
+     R_i^\varphi & = & \{(w,w'): wR_iw' \text{ and } w, w' \in W^\varphi\}\\
+    v^\varphi & = & v - \{v_w:v_w(\varphi) \notin \mathrm{D}\}
+\end{array}\]
+
+
+\end{definition}
+
+In the following, we will show soundness for \textbf{L}$_{[]}$ logic.
+
+
+\begin{theorem}
+    $\vdash \varphi \Rightarrow\ \vDash \varphi$
+\end{theorem}
+
+
+\begin{proof}
+    $\bm{PA1}$. Suppose that $v_w(\varphi) \notin \mathrm{D}.$ In that case, $v_w([\varphi]p) = 1$, by Definition \ref{semantic}. On the other hand, $v_w(\varphi \rightarrow p) = 1$, by definition of the conditional. Therefore, $v_w([\varphi]p) = v_w(\varphi \rightarrow p)$, which implies that $v_w([\varphi]p \equiv \varphi \rightarrow p) \in \mathrm{D}$ -- $\equiv$ is a congruence relation. 
+
+    Suppose that $v_w(\varphi) \in \mathrm{D}.$ In that case, $v_w([\varphi]p) = v_w^\varphi(p) = v_w(p).$ On the other hand, $v_w(\varphi \rightarrow p) = v_w(p),$ by definition of the conditional. Therefore, $v_w(\varphi \rightarrow p \equiv [\varphi]p) \in \mathrm{D}$.
+
+    $\bm{PA2}$. If $v_w(\varphi) \notin \mathrm{D}$, reasoning is similar to the case of PA1. Suppose that $v_w(\varphi) \in \mathrm{D}$. Then, $v_w(\varphi \rightarrow *[\varphi]\psi) = v_w(*[\varphi]\psi) = f_*(v_w([\varphi]\psi)) = f_*(v_w^\varphi(\psi)) = v_w^\varphi(*\psi) = v_w([\varphi]*\psi).$ Thus, $v_w([\varphi]*\psi \equiv \varphi \rightarrow *[\varphi]\psi)$.
+
+    $\bm{PA3}$. If $v_w(\varphi) \notin \mathrm{D}$, then $v_w([\varphi](\psi \land \lambda)) = 1$. On the other hand, $v_w([\varphi]\psi) = 1, v_w([\varphi]\lambda) = 1$. Therefore, $v_w([\varphi]\psi \land [\varphi]\lambda) = 1$, because conjunction is the $\min$. Therefore, the congruence holds in this case.
+
+    Suppose that $v_w(\varphi) \in \mathrm{D}$. $v_w([\varphi](\psi \land \lambda) = v_w^\varphi(\psi \land \lambda) = f_\land(v_w^\varphi(\psi), v_w(\lambda)) = f_\land(v_w([\varphi]\psi), v_w([\varphi]\lambda)) = v_w([\varphi]\psi \land [\varphi]\lambda).$ Therefore, the congruence holds. 
+
+$\bm{RE}$. The proof works via induction on the structure of $\alpha$. Assume $\vDash \theta \equiv \gamma$ throughout the proof.\\
+    \noindent\textbf{Base case.} $\alpha$ = $p$. In that case, either $\theta$ = $p$ or $\theta$ $\neq$ $p$. \\
+    (i) $\theta$ $\neq$ $p$. If $\theta$ $\neq$ $p$, then $p$$(\theta/\gamma)$ = $p$, therefore, $\vDash$ $p$ $\equiv$ $p$$(\theta/\gamma)$, given that $\equiv$ is reflexive.\\
+    (ii) $\theta$ = $p$. In that case, $\vDash$ p $\equiv$ $\gamma$. Therefore, p $\equiv$ p($\theta$/$\gamma$).
+    \\\noindent\textbf{Inductive Hypothesis}. For all formulas $\beta$ s.t. $\beta$ is a subformula of $\alpha$, RE holds. 
+\\\noindent\textbf{Inductive Case.} Let us consider this proof by cases. 
+\\ $\bm{(\alpha = *\beta)}$ By i.h., $\vDash$ $\beta$ $\equiv$ $\beta(\theta/\gamma)$. Given that $\equiv$ is a congruence relation, then $\vDash$ $*\beta$ $\equiv$ $*(\beta(\theta/\gamma))$. Given that $*\beta(\theta/\gamma) = *(\beta(\theta/\gamma))$, the congruence holds.
+\\$\bm{(\alpha=\beta \land \delta)}$ By i.h., $\vDash$ $\beta$ $\equiv$ $\beta(\theta/\gamma)$ and $\vDash$ $\delta$ $\equiv$ $\delta(\theta/\gamma)$. Therefore, $\vDash$ $\beta$ $\land$ $\delta$ $\equiv$ $\beta(\theta/\gamma)$ $\land$ $\delta(\theta/\gamma)$. Given that $\beta(\theta/\gamma)$ $\land$ $\delta(\theta/\gamma)$ = $(\beta \land \delta)$($\theta/\gamma$), then RE holds for this case.
+\\$\bm{(\alpha = [\beta]\delta)}$ By i.h., $\vDash$ $\delta$ $\equiv$ $\delta(\theta /
+\gamma)$ and $\vDash \beta \equiv \beta(\theta/\gamma)$. Therefore, $\vDash [\beta]\delta \equiv [\beta(\theta/\gamma)]\delta(\theta/\gamma)$. Given that $[\beta(\theta/\gamma)]\delta(\theta/\gamma) = ([\beta]\delta)(\theta/\gamma)$, the congruence holds.
+        
+\end{proof}
+
+
+Complexity and translation are defined in the same manner as usual, and completeness proof follows from the same method of reduction to \textbf{L}$_\Box$. 
+
+\begin{theorem}
+    $\vDash \varphi \Rightarrow\ \vdash \varphi$
+\end{theorem}
+\begin{remark}
+    Notice that the only requirements for this $n$-valued logic is that it defines a conjunction as a $\min$ and a detachable classical implication with a fixed element $1$. Furthermore, the construction of a congruence relation is also essential. We don't need a classical negation, nor a paraconsistent or paracomplete negation. We might not talk about negation at all: we assumed the modalities are interdefinable or axiomatized independently in the modal system from which we expand to dynamics, therefore, the issue of negation is not of our concern for the moment. What is remarkable is that for the axiomatization of PA version of many-valued modal logics, very little is sufficient for the construction of such systems. 
+\end{remark}
+
+
+
+
+\end{document}

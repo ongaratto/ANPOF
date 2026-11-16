@@ -1,0 +1,178 @@
+\documentclass[aspectratio=169,11pt]{beamer}
+% ANPOF 2026-inspired Beamer theme (unofficial)
+% To use official institutional logos, put the files
+% unicamp_logo.png and fapesp_logo.png next to main.tex.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{graphicx}
+\usepackage{microtype}
+\definecolor{ANPOFnavy}{HTML}{204965}
+\definecolor{ANPOFdeep}{HTML}{173951}
+\definecolor{ANPOForange}{HTML}{D98B46}
+\definecolor{ANPOFcream}{HTML}{FFF9E5}
+\definecolor{ANPOFgrey}{HTML}{647482}
+\setbeamercolor{normal text}{fg=ANPOFdeep,bg=white}
+\setbeamercolor{frametitle}{fg=white,bg=ANPOFnavy}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{structure}{fg=ANPOForange}
+\setbeamercolor{block title}{fg=white,bg=ANPOFnavy}
+\setbeamercolor{block body}{fg=ANPOFdeep,bg=ANPOFcream}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize item}{\color{ANPOForange}$\blacktriangleright$}
+\setbeamersize{text margin left=0.76cm,text margin right=0.76cm}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\newcommand{\shortevent}{XXI ENCONTRO NACIONAL DA ANPOF}
+
+% Vector fallback sketches, not substitutes for official identity assets.
+\newcommand{\UnicampMark}{%
+ \begin{tikzpicture}[x=1cm,y=1cm,baseline=(name.base)]
+  \begin{scope}[shift={(0.66,0.39)}]
+   \foreach \a in {15,38,61,84,107,130,153,176,199,222,245,268,291}{
+    \fill[black] (\a:0.22) -- (\a-7:0.83) -- (\a+7:0.83) -- cycle;
+   }
+   \fill[red!85!black] (72:0.90) circle (0.072);
+   \fill[red!85!black] (0:0.90) circle (0.072);
+   \fill[red!85!black] (287:0.90) circle (0.072);
+  \end{scope}
+  \node[font=\sffamily\bfseries\fontsize{11}{11}\selectfont,anchor=base] (name) at (0.67,-0.63) {UNICAMP};
+ \end{tikzpicture}%
+}
+\newcommand{\FapespMark}{%
+ \begin{tikzpicture}[baseline=(name.base)]
+  \fill[ANPOFnavy] (0,0.17) .. controls (0.25,0.62) and (0.66,0.65) .. (0.94,0.38)
+  -- (1.34,0.38) -- (1.14,0.03) -- (0.86,0.03)
+  .. controls (0.54,0.34) and (0.31,0.18) .. (0,0.17);
+  \node[font=\sffamily\bfseries\fontsize{20}{20}\selectfont,text=ANPOFnavy,anchor=base west] (name) at (1.44,0.08) {FAPESP};
+  \node[font=\sffamily\fontsize{5.5}{6.5}\selectfont,text=ANPOFnavy,anchor=north west] at (1.45,0) {S\~AO PAULO RESEARCH FOUNDATION};
+ \end{tikzpicture}%
+}
+\newcommand{\InstitutionalLogos}{%
+ \begin{minipage}[c]{0.27\linewidth}\centering
+ \IfFileExists{unicamp_logo.png}{\includegraphics[height=1.13cm,keepaspectratio]{unicamp_logo.png}}{\resizebox{!}{1.13cm}{\UnicampMark}}\end{minipage}%
+ \hfill
+ \begin{minipage}[c]{0.43\linewidth}\centering
+ \IfFileExists{fapesp_logo.png}{\includegraphics[height=0.65cm,keepaspectratio]{fapesp_logo.png}}{\resizebox{!}{0.64cm}{\FapespMark}}\end{minipage}%
+}
+
+% Backgrounds based on the event's dark blue + orange 2026 palette.
+\newcommand{\CoverArt}{%
+\begin{tikzpicture}[remember picture,overlay]
+ \fill[ANPOFnavy] (current page.south west) rectangle (current page.north east);
+ \fill[ANPOFdeep] ([xshift=-0.3cm,yshift=0.1cm]current page.north east) circle (2.8cm);
+ \fill[ANPOForange] ([xshift=-0.55cm,yshift=-0.65cm]current page.south west) circle (2.6cm);
+ \fill[ANPOFnavy] ([xshift=-1.1cm,yshift=-1.1cm]current page.south west) circle (2.6cm);
+ \fill[ANPOForange] ([xshift=-0.2cm,yshift=0.1cm]current page.north east) circle (0.23cm);
+ \fill[white] (current page.south west) rectangle ([yshift=1.57cm]current page.south east);
+ \fill[ANPOForange] ([yshift=1.57cm]current page.south west) rectangle ([yshift=1.62cm]current page.south east);
+\end{tikzpicture}}
+\setbeamertemplate{frametitle}{%
+ \nointerlineskip
+ \begin{beamercolorbox}[wd=\paperwidth,ht=1.05cm,dp=.24cm,leftskip=.74cm]{frametitle}
+  \insertframetitle
+ \end{beamercolorbox}
+ \begin{tikzpicture}[remember picture,overlay]
+ \fill[ANPOForange] (0,0) rectangle (\paperwidth,0.045cm);
+ \end{tikzpicture}
+}
+\setbeamertemplate{footline}{%
+ \ifnum\value{framenumber}>1
+ \begin{beamercolorbox}[wd=\paperwidth,ht=.40cm,dp=.12cm,leftskip=.75cm,rightskip=.7cm]{normal text}
+ \color{ANPOFgrey}\fontsize{7.8}{9}\selectfont \shortevent\hfill \insertframenumber
+ \end{beamercolorbox}
+ \fi}
+
+\title{An Axiomatization for Many-Valued\\ Dynamic Epistemic Logics}
+\author{Rafael Ongaratto}
+\institute{UNICAMP}
+\date{Florian\'opolis, 16--20 November 2026}
+
+\begin{document}
+\begin{frame}[plain]
+\CoverArt
+\begin{tikzpicture}[remember picture,overlay]
+ \node[anchor=north west,text=ANPOFcream,font=\sffamily\bfseries\fontsize{13}{15}\selectfont,align=left]
+ at ([xshift=.82cm,yshift=-.70cm]current page.north west) {XXI ENCONTRO\\NACIONAL DA ANPOF};
+ \node[anchor=north east,text=ANPOFcream,font=\sffamily\bfseries\fontsize{9}{11}\selectfont,align=right]
+ at ([xshift=-.8cm,yshift=-.79cm]current page.north east) {FLORIAN\'OPOLIS, SC\\16--20 NOV 2026};
+ \node[anchor=north west,text=white,text width=11.8cm,font=\sffamily\bfseries\fontsize{25}{29}\selectfont,align=left]
+ at ([xshift=.82cm,yshift=-2.20cm]current page.north west) {An Axiomatization for\\Many-Valued Dynamic\\Epistemic Logics};
+ \node[anchor=north west,text=ANPOFcream,font=\sffamily\bfseries\fontsize{13}{16}\selectfont]
+ at ([xshift=.86cm,yshift=-5.35cm]current page.north west) {Rafael Ongaratto \hspace{0.38cm}\textbar\hspace{0.38cm} UNICAMP};
+ \node[anchor=north west,text=white,text width=11.9cm,font=\sffamily\fontsize{9.2}{12}\selectfont,align=left]
+ at ([xshift=.86cm,yshift=-5.82cm]current page.north west)
+ {\textbf{Supervisor:} Walter Carnielli (CLE, UNICAMP)\quad\\
+  \textbf{Co-supervisor:} Hans van Ditmarsch (CNRS/IRIT, Toulouse)};
+ \node[anchor=west,inner sep=0pt] at ([xshift=.83cm,yshift=.77cm]current page.south west)
+ {\begin{minipage}{6.3cm}\InstitutionalLogos\end{minipage}};
+ \node[anchor=east,text=ANPOFdeep,font=\sffamily\fontsize{8.7}{11}\selectfont,align=right]
+ at ([xshift=-.7cm,yshift=.82cm]current page.south east)
+ {FAPESP Grant No. 2024/00807-6};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Outline}
+\begin{enumerate}
+ \setlength\itemsep{.62cm}
+ \item Motivation and background
+ \item Many-valued epistemic semantics
+ \item Dynamic operators and public announcements
+ \item Axiomatization and completeness
+ \item Concluding remarks
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Motivation and background}
+\begin{block}{Many-valued dynamics}
+How can dynamic reasoning be axiomatized over many-valued modal logics?
+\end{block}
+\vspace{0.4cm}
+\begin{itemize}
+\item Dynamic modalities extend modal reasoning by allowing change over Kripke models. 
+\item Classical dynamic epistemic logic is axiomatized by the use of \textit{reduction axioms}, equivalences that reduce every formula of DEL into a formula without dynamic modalities.
+\item Completeness of DEL is proved by reduction to the epistemic language. 
+
+\end{itemize}
+Problem: can we do the same for many-valued modal logics?
+\end{frame}
+
+\begin{frame}{Many-valued epistemic semantics}
+\begin{block}{Semantic framework}
+% Replace with the precise semantics of the logics used in the talk.
+Let $M=(W,R,V)$ be an epistemic model, where $W$ is a set of states,
+$R$ is an accessibility relation, and $V$ assigns many-valued valuations.
+\end{block}
+\vspace{0.5cm}
+\centering\color{ANPOFgrey}\emph{Insert truth-value algebra, designated values, and modal clauses here.}
+\end{frame}
+
+\begin{frame}{Axiomatization and completeness}
+\begin{block}{Main result}
+\emph{Insert the precise statement of the axiomatization theorem here.}
+\end{block}
+\vspace{0.35cm}
+\begin{itemize}
+ \item Static axioms and inference rules
+ \item Dynamic principles / reduction axioms (when applicable)
+ \item Soundness and completeness argument
+\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+\CoverArt
+\begin{tikzpicture}[remember picture,overlay]
+ \node[text=white,font=\sffamily\bfseries\fontsize{32}{36}\selectfont]
+ at ([yshift=.8cm]current page.center) {Thank you!};
+ \node[text=ANPOFcream,font=\sffamily\fontsize{14}{18}\selectfont]
+ at ([yshift=-.13cm]current page.center) {Rafael Ongaratto \quad | \quad UNICAMP};
+ \node[anchor=west,inner sep=0pt] at ([xshift=.83cm,yshift=.77cm]current page.south west)
+ {\begin{minipage}{6.3cm}\InstitutionalLogos\end{minipage}};
+ \node[anchor=east,text=ANPOFdeep,font=\sffamily\fontsize{8.7}{11}\selectfont]
+ at ([xshift=-.7cm,yshift=.82cm]current page.south east)
+ {FAPESP Grant No. 2024/00807-6};
+\end{tikzpicture}
+\end{frame}
+\end{document}
